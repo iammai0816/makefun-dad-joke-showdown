@@ -14,6 +14,9 @@ JOKE = (
 
 
 def main() -> None:
+    # Guard: the entry must be a single line under 200 chars before writing.
+    assert "\n" not in JOKE, "entry must be a single line"
+    assert len(JOKE) < 200, f"entry too long: {len(JOKE)} chars"
     output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(output_dir, exist_ok=True)
     entry_path = os.path.join(output_dir, "entry.txt")
